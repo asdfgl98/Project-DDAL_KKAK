@@ -1,0 +1,55 @@
+.login-logo{
+    width: 20px;
+    height: 20px;
+    border-radius:90%;
+    border: none;
+    margin-right: 20px;
+}
+.login-box{
+    border : 1px solid rgb(200, 200, 200);
+    border-radius: 5px;
+}
+.list-group-item:hover{
+    background-color:rgba(200, 200, 200, 0.3);
+}
+
+
+.list-group-item{
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+/* .login-btn{
+    background-color: #FF7E00;
+    border: none;
+} */
+.login-btn:hover{
+    background-color: #FF7E00;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    border-color: #FF7E00;
+}
+
+.login-btn:active{
+    background: #FF7E00;
+    }
+.text-btn:hover{
+    color: #FF7E00;
+    transition: all .30s linear;
+}
+.text-btn{
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(96, 96, 101);
+}
+.email-input > .form-control{
+    height: 60px;
+    font-weight: bold;
+}
+#root > div > div > div:nth-child(2) > div > div > form > div.mb-4 > h2{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 30px;
+}

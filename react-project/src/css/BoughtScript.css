@@ -1,0 +1,24 @@
+.BS-first-container{
+    width: 80%;
+    margin-top: 30px;
+    margin-left : auto;
+}
+.BS-first-container > .title > h3{
+    font-weight: bold;
+    width: 96%;
+    text-align: center;
+
+}
+.BS-first-container > .title-box{
+    width: 96%;
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+    border-top : 2px solid lightgray;
+}
+.BS-first-container > .title-box >.subtitle-text{
+    margin: 10px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    border-right: 2px solid lightgray;
+}

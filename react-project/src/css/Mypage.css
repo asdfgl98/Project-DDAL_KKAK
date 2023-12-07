@@ -1,0 +1,68 @@
+.MyConatainer{
+    display: flex;
+    
+    
+}
+.MyConatainer > .Container{
+    width: 15%;
+    height: 100vh;
+    margin-top: 30px;
+    min-width: 170px;
+    position: fixed;
+}
+.user-side{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-box{
+    height: 40px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px 16px 10px 24px;
+    position: relative;
+    box-sizing: border-box;
+}
+.box-current{
+    background-color: #FF7E00;
+    border: #FF7E00;
+    /* background-color: #c2e7ff; */
+    border-radius: 0 50px 50px 0;
+    font-weight: bold;
+    
+}
+.box-current>span{
+    color: white
+}
+.user-box > span:hover{
+    cursor: pointer;
+}
+
+.user-side > div > img{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .user-side>div>span{
+        display: none;
+    }
+    .user-side > div > img{
+        display:block;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+       
+    }
+    .user-box{
+        padding: 10px 16px 10px 15px;
+    }
+   
+    .MyConatainer > .Container{
+        min-width: 50px;
+    }
+   
+
+}

@@ -1,0 +1,261 @@
+/* 모달 바깥쪽 요소 */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  /* 모달 구성 (Container)*/
+  .S-ImgInfo {
+    background-color: white;
+    border: 2px solid black;
+    width: 55%;
+    min-width: 40%;
+    min-height: 40%;
+    height: 80%;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+
+  }
+
+  /* 모달 Img css */
+  .S-ImgInfo > .S-ImgPic{
+    display: flex;
+    justify-content: center;
+    height: 90%;
+    width: 65%;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 5px;
+  }
+  .S-ImgPic > img{
+    width: 100%;
+    border-radius: 5px;
+  }
+
+
+ .S-ImgInfo > .image-info{
+    min-width: 25%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
+
+ 
+  /* 좋아요 수, 공유 토글 */
+  .image-info > .like-toggle-box{
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+  }
+  .like-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    gap:20px
+  }
+  .like-box .like-btn{
+    font-size: 20px;
+  }
+
+
+  .share-toggle-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+ 
+  /* 유저 프롬프트부분 css */
+  .user-Prompt{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    gap: 10px;
+  }
+  /* 긍정 프롬프트 부분 */
+  .title-prompt-Pos{
+    max-width: 240px;
+    height: 50%;
+  }
+  .title-prompt-Pos > .prompt-text{
+    height: 85%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+  /* 부정 프롬프트 부분 */
+  .user-Prompt > .prompt-Neg{
+    max-width: 240px;
+    height: 50%;
+  }
+  .user-Prompt > .prompt-Neg > .prompt-text{
+    height: 85%;
+   
+    max-height: 70%;
+    overflow-y: auto;
+    
+  }
+
+  .image-info > .user-Prompt > h3,h4{
+    font-weight: bold;
+  }
+  /* 모달 버튼 CSS */
+  .Modal-Btn{
+    margin-top: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+    width: 100%;
+  }
+
+  /* 굿즈선택다운로드, 닫기 버튼 */
+  .SM-btn{
+    border-radius: 5px;
+    height: 40px;
+    min-height: 10px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid rgb(200, 200, 200);
+    color : rgb(80, 77, 77)
+  }
+
+  .SM-btn:hover{
+    background-color: #FF7E00;
+    border: #FF7E00;
+    color: white;
+    transition: all .10s linear;
+  }
+
+  /* 이미지 편집, 굿즈 버튼 */
+  .Modal-Btn > a > button {
+    border-radius: 5px;
+    height: 40px;
+    width: 150px;
+    background-color: white;
+    border: 1px solid rgb(200, 200, 200);
+    color : rgb(80, 77, 77)
+  }
+  .Modal-Btn > a > button:hover{
+    background-color: #FF7E00;
+    border: #FF7E00;
+    color: white;
+    transition: all .10s linear;
+  } 
+
+  /* .SMD-btn{
+    color: #dc3545;
+    background-color: white;
+    border : 1px solid red;
+  }
+  .SMD-btn:hover{
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+  } */
+  
+  /* App 이미지 상세 모달 */
+  
+  
+  @media(max-width:1326px){
+    /* 모달 구성 (Container)*/
+
+  .S-ImgInfo {
+    background-color: white;
+    min-width: 300px;
+    width: 500px;
+    height: 75%;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    justify-content: start;
+  }
+
+
+
+  /* 모달 Img css */
+  .S-ImgPic{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 80%;
+    min-width: 80%;
+  }
+ .S-ImgPic > img{
+  
+    height: auto;
+  }
+  .S-ImgInfo > .image-info{
+      height: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+  /* 유저 프롬프트부분 css */
+  .user-Prompt{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+
+  .title-prompt-Pos{
+    max-width: 240px;
+    height: 50%;
+    width: 100%;
+  }
+  .title-prompt-Pos > .prompt-text{
+    width: 100%;
+    height: 85%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+  /* 부정 프롬프트 부분 */
+  .user-Prompt > .prompt-Neg{
+    max-width: 240px;
+    height: 50%;
+    width: 100%;
+  }
+  .user-Prompt > .prompt-Neg > .prompt-text{
+    height: 85%;
+    max-height: 90%;
+    overflow-y: auto;
+  }
+
+ 
+  .Modal-Btn{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2% 0;
+    gap: 8px;
+  }
+
+  .Modal-Btn> button{
+    width: 30%;
+  }
+ .SM-text{
+    width: 50%;
+    font-size: 13px;
+  }
+
+ 
+  }
+

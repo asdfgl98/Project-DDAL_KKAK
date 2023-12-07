@@ -1,0 +1,122 @@
+.Card-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-keyword-box{
+    display: flex;
+    justify-content: space-between;
+    border : 1px solid rgb(200, 200, 200);
+    border-radius: 30px;
+    width: 100%;
+}
+.search_Keyword{
+    width: 80%;  
+    border: none; 
+}
+
+#button-addon2{
+    background : none;
+}
+.search_Keyword:focus{
+    outline: none;
+}
+
+#button-addon2{
+   border: none;
+}
+
+/* 이미지 카드 배치 */
+.search-Card{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4,1fr);
+    gap: 5px;
+}
+.Card-box > .search-Card > .img-card{
+    display: flex;
+    justify-content: end;
+    margin-right: 0px;
+}
+
+.Card-div:hover{
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.5) 0px 30px 60px -30px;
+   cursor: pointer;
+}
+
+/* 좋아요 배치 css */
+.like-btn{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 3px;
+  }
+  .like-btn > .red-heart {
+    filter: invert(20%) sepia(77%) saturate(7341%) hue-rotate(357deg) brightness(103%) contrast(116%);
+  }
+  /* 닉네임, 날짜 */
+  .Card-date-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Card-date-title>.card-title{
+    font-weight: bold;
+}
+.Card-box > .search-Card .img-card .Card-div .card-body{
+    border-top: 1px solid rgb(200, 200, 200);
+    display: flex;
+    flex-direction: column;
+}
+/* .Card-box > .search-Card .img-card .Card-div {
+
+} */
+.Card-div .card-body > .Card-like-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 인기순, 최신순,오래된순 Nav Container */
+.Search-Img-Nav{
+    width: 100%;
+    border-bottom: 3px solid rgb(200, 200, 200);
+    
+}
+.Search-Img-Nav > .Search-Img-box{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    cursor: pointer;
+}
+.Search-Img-Nav > .Search-Img-box > .event-text-Best{
+    font-weight: bold;
+}
+.Search-Img-Nav > .Search-Img-box > .event-text-New{
+    font-weight: bold;
+}
+.Search-Img-Nav > .Search-Img-box > .event-text-Old{
+    font-weight: bold;
+}
+.Search-Img-Nav > .Search-Img-box > span:hover{
+    font-weight: bold;
+}
+@media(max-width:1176px){
+    .search-Card{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+ @media(max-width:766px){
+    .search-Card{
+        grid-template-columns: repeat(2,1fr);
+    }
+} 
+ @media(max-width:430px){
+    .search-Card{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .Card-box > .search-Card > .img-card{
+        justify-content: center;
+    }
+} 

@@ -1,0 +1,163 @@
+/* Body */
+.Web-Container{
+  position: relative;
+  min-height: 100vh; /* 전체 높이를 화면에 맞춤 */
+  padding-bottom: 60px; /* 푸터 높이만큼 여백을 줌 */
+  padding-top: 50px; /* 헤더의 높이만큼 상단 여백 추가 */
+}
+
+/* Header */
+/* 모든 Navbar 브랜드 및 링크에 대한 일반 스타일 */
+.Header-Container {
+  position: fixed; /* 고정 위치 설정 */
+  top: 0; /* 화면 상단에 고정 */
+  left: 0; /* 화면 왼쪽에 고정 */
+  width: 100%; /* 헤더의 너비를 화면 전체로 설정 */
+  z-index: 1000; /* 다른 요소들 위에 레이어링 */
+  opacity: 0.9;
+ 
+}
+.Header-box{
+  /* footer와 헤더 색 동일 */
+  height: 70px;
+}
+
+/* 로고 헤더요소 박스 */
+.logo-ele-box{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 337px;
+}
+
+.logo-ele-box > .header-logo > img{
+  width: 30px;
+  height: 30px;
+}
+/* 링크 요소 박스 */
+.Header-ele{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* 헤더 로고  */
+.header-logo{
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  min-width: 60px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#right-nav{
+  margin-right: 10%;
+}
+
+/*각각 링크요소 */
+.Web-Nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  display: flex;
+}
+.nav-link > span{
+  font-size: 18px;
+}
+.nav-link > span:hover{
+  font-weight: bold;
+}
+
+/* 장바구니 아이콘 이미지에 대한 스타일 */
+.Web-Nav > a > .basket{
+  width: 30px; 
+  height: 30px; 
+  margin-left: 0.5rem; 
+}
+
+/* App 햄버거 메뉴 */
+.burger{
+  display: none;
+}
+
+/* 모바일 메뉴바 요소들 */
+.Mobile-Nav{
+  display: none;
+}
+
+
+
+/* 모바일 헤더 디자인 */
+@media (max-width: 768px) {
+  .Header-Container{
+    opacity: 0.9;
+  }
+  .Header-box{
+    display: flex;
+    height: 60px;
+    
+  }
+  .Header-ele{
+    display: none;
+  }
+  .Mobile-Nav{
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 5%;
+    font-weight: bold;
+    gap : 3px;
+    padding-bottom: 3px;
+  }
+
+  .App-Nav{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 3px;
+  }
+  /* App 햄버거 메뉴 */
+  .burger{
+    display: block;
+    margin-right: 10%;
+    cursor: pointer;
+  }
+
+  /* 로고 햄버거 메뉴 위치 */
+  .logo-ele-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .logo-ele-box > .header-logo > img{
+    width: 28px;
+    height: 28px;
+  }
+  .basket {
+    width: 28px; /* 중간 크기의 화면에서 아이콘 크기 조정 */
+    height: 28px;
+  }
+}
+
+
+
+  /* Footer */
+  .Web-Container > footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* 푸터 높이 설정 */
+}
+@media (max-width: 768px) {
+  .MDBFooter {
+      height: auto; /* 모바일 화면에서는 푸터 높이를 자동으로 조절 */
+  }
+}

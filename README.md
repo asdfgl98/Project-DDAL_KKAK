@@ -1,29 +1,7 @@
 ## DDAL_KKAK
 ## 광주인공지능사관학교4기 JS 특화과정 실전역량프로젝트
-### Caffeine is water of life Team
 <br/>
 
-231127 박지훈 수정
-서버 배포 시 수정해야할 파일 리스트
-- axios.js
-- axiosProgress.js
-- socket.js
-- .env
-- s3 cors
-- api redirect uri
-
-<br/>
-
-### 📌 팀 카페인은 생명수 프로젝트 규칙
-
-#### 1. commit 양식 참고해서 commit하기<br/>
-ex) git commit -m '20231109 Login,Join 박지훈'<br/>
-#### 2. commit 했으면 프로젝트 단톡에 해당 내용 공유하기<br/>
-ex) 20231109 Login,Join 푸쉬 했습니다.<br/>
-#### 3. 프론트 - 백 같은 파트 협업해서 개발 시 수정 내용 구두 상으로 공유하기 (충돌방지)
-
-
-<br/>
 
 ### ✏️ 프로젝트 소개
 생성형 AI 모델(카카오의 Karlo API, Stable Diffusion 등)을 사용하여 사용자가 입력한 프롬프트를 바탕으로 이미지를 생성,  <br/>
@@ -42,7 +20,7 @@ ex) 20231109 Login,Join 푸쉬 했습니다.<br/>
 * 팀장 : 김지원(PM)
 * 팀원 : 김형균(FE)
 * 팀원 : 나범수(FE)
-* 팀원 : 박지훈(BE) 
+* 팀원 : **박지훈(BE)** 
 * 팀원 : 임휘훈(BE)
 * 팀원 : 조성민(FE)
 
@@ -51,7 +29,9 @@ ex) 20231109 Login,Join 푸쉬 했습니다.<br/>
 ### 💻 개발 환경
 - **FE** : `React.js`
 - **BE** : `Node.js` `Python`
+- **Server** : AWS EC2, AWS S3
 - **IDE** : Visual Studio
 - **Framework** : Express.js, Flask
 - **Database** : MySQL
-- **주요 Library** : Karlo, StableDiffusion, filerobot-image-editor, aws-sdk/client-s3, axios, bootstrap, dotenv
+- **Model** : StableDiffusion
+- **주요 Library** : filerobot-image-editor, aws-sdk/client-s3, axios, bootstrap

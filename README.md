@@ -59,6 +59,6 @@
 - RESPONSE 받은 이미지 중 원하는 이미지 선택
 - 선택한 이미지를 filerobot-image-editor를 사용하여 편집 및 저장
 
-#### 생성된 이미지와 굿즈 이미지 편집 - <a href="" target="_blank">상세보기</a>
+#### 생성한 이미지와 굿즈 이미지 편집 - <a href="" target="_blank">상세보기</a>
 - filerobot-image-editor를 사용해서 생성한 이미지 불러온 후 굿즈이미지에 삽입 및 편집
 - 편집된 굿즈 장바구니에 담기

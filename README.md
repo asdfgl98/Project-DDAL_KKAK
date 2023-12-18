@@ -40,7 +40,7 @@
 - **Framework** : Express.js, Flask
 - **Database** : MySQL
 - **Model** : StableDiffusion
-- **주요 Library** : filerobot-image-editor, aws-sdk/client-s3, axios, bootstrap
+- **주요 Library** : filerobot-image-editor, aws-sdk/client-s3, axios, bootstrap, ngrok
 
 <br/>
 

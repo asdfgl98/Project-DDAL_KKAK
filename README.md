@@ -46,7 +46,7 @@
 
 ## 📌 구현 기능
 
-#### 소셜 로그인 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/1.-%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8" target="_blank">상세보기</a>
+#### 소셜 로그인 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/1.-%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8" target="_blank" rel="noopener">상세보기</a>
 - Kakao, Google, Naver에서 제공하는 REST API를 활용한 소셜 로그인 구현
 
 #### 생성형 AI 활용 이미지 생성 및 활용 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/2.-%EC%83%9D%EC%84%B1%ED%98%95-AI-%ED%99%9C%EC%9A%A9-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1-%EB%B0%8F-%ED%99%9C%EC%9A%A9" target="_blank">상세보기</a>

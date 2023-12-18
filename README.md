@@ -11,9 +11,9 @@
 생성된 이미지를 filerobot-image-editor를 이용하여 사용자가 쉽게 이미지를 편집할 수 있는 서비스를 제공합니다.<br/>
 생성 및 편집된 이미지를 로고나 포스터에서 활용할 수 있도록 다운로드 기능을 제공하고, 추가로 티셔츠나 머그컵과 같은
 굿즈 제작에 활용할 수 있도록 서비스를 개발 하였습니다.
-
-![DDAL_KKAK](https://github.com/asdfgl98/Project-DDAL_KKAK/assets/83624652/814e4fa9-2e5d-4315-96e1-bd58f05492ce)
-
+### 🎥 시연영상
+![DDAL_KKAK](https://github.com/asdfgl98/Project-DDAL_KKAK/assets/83624652/814e4fa9-2e5d-4315-96e1-bd58f05492ce) <br/>
+<a href="https://youtu.be/V_4yccnQbY4">Youtube에서 영상보기</a>
 
 <br/>
 

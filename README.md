@@ -46,19 +46,31 @@
 
 ## 📌 구현 기능
 
-#### 소셜 로그인 - <a href="" target="_blank">상세보기</a>
+#### 소셜 로그인 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/1.-%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8" target="_blank">상세보기</a>
 - Kakao, Google, Naver에서 제공하는 REST API를 활용한 소셜 로그인 구현
 
-#### 생성형 AI 활용 이미지 생성 및 활용 - <a href="" target="_blank">상세보기</a>
+#### 생성형 AI 활용 이미지 생성 및 활용 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/2.-%EC%83%9D%EC%84%B1%ED%98%95-AI-%ED%99%9C%EC%9A%A9-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1-%EB%B0%8F-%ED%99%9C%EC%9A%A9" target="_blank">상세보기</a>
 - 모델 구동을 위한 Flask 서버 구축
 - 메인서버(Node.js)에서 이미지 생성을 위한 프롬프트를 포함하여 Flask 서버로 REQUEST
 - 전송받은 프롬프트를 입력해서 이미지 생성모델(Stable Diffusion) 실행
 - 생성된 이미지를 AWS S3 버킷에 업로드 후, 이미지 URL 메인서버로 RESPONSE
 
-#### 생성된 이미지 선택 및 편집 - <a href="" target="_blank">상세보기</a>
+#### 생성된 이미지 선택 및 편집 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/3.-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%84%A0%ED%83%9D-%EB%B0%8F-%ED%8E%B8%EC%A7%91" target="_blank">상세보기</a>
 - RESPONSE 받은 이미지 중 원하는 이미지 선택
 - 선택한 이미지를 filerobot-image-editor를 사용하여 편집 및 저장
 
-#### 생성한 이미지와 굿즈 이미지 편집 - <a href="" target="_blank">상세보기</a>
+#### 생성한 이미지와 굿즈 이미지 편집 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/4.-%EC%83%9D%EC%84%B1%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%EA%B5%BF%EC%A6%88-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%8E%B8%EC%A7%91" target="_blank">상세보기</a>
 - filerobot-image-editor를 사용해서 생성한 이미지 불러온 후 굿즈이미지에 삽입 및 편집
 - 편집된 굿즈 장바구니에 담기
+
+
+## 🚫트러블슈팅 - <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/5.-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85" target="_blank">상세보기</a>
+### #1
+- 문제#1 : 다수의 사용자가 이밎 생성 시도 시 서버 과부화 발생
+- 원인#1 : 동시에 이미지를 생성하게 되면 서버의 GPU RAM 자원 부족으로 인해 OutOfMemoryError 발생
+- 해결#1 : socket.io 라이브러리 활용 이미지 생성 대기열을 구축하여 순서대로 이미지를 생성하게 수정
+
+### #2
+- 문제#2 : filerobot-image_editor API를 사용해 AWS S3에 있는 이미지 접근 시 CORS 에러 발생
+- 원인#2 : 브라우저 로컬 캐시가 활성화되어 이미지 요청 시, CORS 헤더가 없는 브라우저 캐시를 재사용
+- 해결#2 : AWS S3에 이미지 업로드 시 로컬 캐시를 사용하지 않도록 HTTP 헤더 설정을 해줌 ("Cache-Control : no-store")

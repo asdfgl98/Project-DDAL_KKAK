@@ -67,7 +67,7 @@
 ## 🚫트러블슈팅
 #### <a href="https://github.com/asdfgl98/Project-DDAL_KKAK/wiki/5.-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85" target="_blank">상세보기</a>
 ### #1 
-- 문제#1 : 다수의 사용자가 이밎 생성 시도 시 서버 과부화 발생
+- 문제#1 : 다수의 사용자가 이미지지 생성 시도 시 서버 과부화 발생
 - 원인#1 : 동시에 이미지를 생성하게 되면 서버의 GPU RAM 자원 부족으로 인해 OutOfMemoryError 발생
 - 해결#1 : socket.io 라이브러리 활용 이미지 생성 대기열을 구축하여 순서대로 이미지를 생성하게 수정
 

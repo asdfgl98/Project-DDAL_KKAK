@@ -34,8 +34,12 @@ const page = require("./routes/page")
 const socketRoute = require('./routes/socketRoute')
 // 결제 라우터
 const paymentGoods = require('./routes/paymentGoods')
-// python 스크립트 실행
-const python = spawn('python', ['./flaskServer.py'])
+
+// python 스크립트 실행 개발용
+// const python = spawn('python', ['./flaskServer.py'])
+
+// python 스크립트 실행 ec2용
+const python = spawn('python3', ['./flaskServer.py'])
 
 // 정적 파일을 가져오기 위한 미들웨어
 app.use(express.static(path.join(__dirname, "react-project", "build")));

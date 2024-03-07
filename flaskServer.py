@@ -17,7 +17,7 @@ load_dotenv('./python/.env')
 import uuid
 # stable diffusion
 import torch
-from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler, DiffusionPipeline
+# from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler, DiffusionPipeline
 # S3 버킷에 업로드
 import boto3
 

@@ -100,7 +100,7 @@ const deleteUser =  async(userId)=>{
     let deleteUserSQL = `DELETE FROM TB_MEMBER WHERE MEMBER_ID = ?`
     try{
         conn.connect()
-        let result = await conn.promise().query(deleteUserSQL, [userId])
+        let result = await conn.promise().query(deleteUserSQL, [String(userId)])
         return {deleteResult : true}
     } catch(err) {
         console.error('회원탈퇴 쿼리문 에러', err)

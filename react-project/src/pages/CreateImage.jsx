@@ -107,9 +107,20 @@ const CreateImage = () => {
 
   // 23-11-20 오후 17:00 박지훈 작성
   // 이미지 생성 버튼 클릭
-  const createImg = () => {
+  const createImg = async() => {
     // 사용자 아이디 전송해서 대기열에 추가
-    socket.emit("createClick", { id: userId });
+    if (positivePrompt !== "" && negativePrompt !== "") {
+      let serverOn =  await axios.get('/imgCreate/checkServer')
+      if(serverOn.data.server){
+        socket.emit("createClick", { id: userId });
+      }
+      else{
+        alert('이미지 생성 서버가 불안정 합니다. 잠시 후 다시 시도해주세요.')
+      }
+    }
+    else{
+      alert("긍정, 부정 프롬프트를 입력해주세요.");
+    }
   };
 
   //23-11-16 오전 9:36 나범수 navigate 추가 -> 페이지 개수 전달 위함.

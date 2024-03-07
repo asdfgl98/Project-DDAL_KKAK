@@ -78,7 +78,7 @@ app.get("/", (req, res) => {
 // 이미지 생성 대기리스트 실시간 연동(Socket.io)
 io.on('connection', (socket)=>{
   // 이미지 생성 클릭 시 사용자 이름 대기열에 추가
-  socket.on('createClick', (data)=>{
+  socket.on('createClick', async(data)=>{
     let id = data.id
     axios.post('/socket/enQueue', {id : id})
       .then(res=>{
@@ -112,4 +112,5 @@ app.get("*", (req, res) => {
 
 server.listen(app.get("port"), () => {
   console.log("DDal_KKAK_SERVER port waiting...");
+  console.log('http://localhost:3001')
 });

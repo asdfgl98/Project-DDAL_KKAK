@@ -75,6 +75,4 @@ const socialLogin = async(userData, loginType)=>{
 }
 
 
-
-
 module.exports = {socialLogin}

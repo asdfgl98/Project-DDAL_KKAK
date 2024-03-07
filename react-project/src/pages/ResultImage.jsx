@@ -3,10 +3,14 @@ import { useLocation } from "react-router-dom";
 import "../css/ImageResult.css";
 import axios from "../axios";
 import { useNavigate } from "react-router-dom";
+import { ProgressReducerActions } from "../redux/reducers/progressSlice";
+import { useDispatch } from "react-redux";
 
 const ResultImage = () => {
   const location = useLocation();
   const navi = useNavigate();
+  const dispatch = useDispatch()
+  dispatch(ProgressReducerActions.resetProgress())
 
   // 23-11-16 오후 14:30 박지훈 작성
   // S3 버킷 기본 주소 값

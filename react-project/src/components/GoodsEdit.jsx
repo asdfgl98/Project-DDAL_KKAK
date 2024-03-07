@@ -116,7 +116,7 @@ const GoodsEdit = ({imgData, getImgDataRef}) => {
           Rotate={{ angle: 90, componentType: "slider" }}
           Image={{
             disableUpload: true,
-            // db에서 이미지 정보 가져오면 gallery 변수 활용
+            // db에서 이미지 정보 가져오면 gallery 변수 활용(내 저장 이미지)
             gallery: myGallery,
           }}
           // 번역

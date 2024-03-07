@@ -17,7 +17,11 @@ const client = new S3Client({
   secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY
 })
 
-let flaskServer = 'http://ecea-34-139-230-216.ngrok.io'
+let flaskServer = 'http://localhost:5000'
+
+router.get('/checkServer', (req,res)=>{
+  res.json({server : flaskServer})
+})
 
 // Flask ngrok 서버 주소 가져오기
 // Colab에서 Flask 서버가 켜지면 공개 IP로 접근하여 ngrok 주소 전달
@@ -31,24 +35,32 @@ router.post('/getUrl', (req,res)=>{
 router.post("/stable", (req, res) => {
   // 긍정, 부정 프롬프트
   let data = req.body;
+  console.log(data)
   let userId = req.session.userId;
-  axios
-    .post(`${flaskServer}/stable`, {
-      data,
-      userId: userId,
-    })
-    .then((response) => {
-      let imgData = response.data;
-      res.json({ imgData });
-    })
-    .catch((error) => {
-      console.error("이미지 생성 에러 발생");
-      res.json({ createError: true });
-    });
+  if(!flaskServer){
+    console.log('imgcreate server is off')
+    res.json({ createError: true });
+  }
+  else{
+    axios
+      .post(`${flaskServer}/kalro`, {
+        data,
+        userId: userId,
+      })
+      .then((response) => {
+        let imgData = response.data;
+        res.json({ imgData });
+      })
+      .catch((error) => {
+        console.error("이미지 생성 에러 발생");
+        res.json({ createError: true });
+      });
+
+  }
 });
 
 // 2023-11-10 오전 10:00 박지훈 작성
-// 생선된 이미지 선택 라우터(생성 된 이미지 중 사용할 이미지를 제외한 나머지 이미지 제거(S3 용량 관리))
+// 생성된 이미지 선택 라우터(생성 된 이미지 중 사용할 이미지를 제외한 나머지 이미지 제거(S3 용량 관리))
 router.post("/choiceImg", (req, res) => {
   let data = req.body;
   axios

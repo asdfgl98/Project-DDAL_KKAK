@@ -16,7 +16,7 @@ load_dotenv('./python/.env')
 # 이미지 파일명 생성을 위한 랜덤 값 생성
 import uuid
 # stable diffusion
-import torch
+# import torch
 # from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler, DiffusionPipeline
 # S3 버킷에 업로드
 import boto3

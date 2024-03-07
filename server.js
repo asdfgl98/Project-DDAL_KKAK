@@ -16,6 +16,9 @@ const {Server} = require('socket.io')
 const server = createServer(app)
 const io = new Server(server)
 
+// python 실행
+const {spawn} = require('child_process')
+
 axios.default.defaults.baseURL = process.env.BASE_URL
 
 
@@ -31,6 +34,8 @@ const page = require("./routes/page")
 const socketRoute = require('./routes/socketRoute')
 // 결제 라우터
 const paymentGoods = require('./routes/paymentGoods')
+// python 스크립트 실행
+const python = spawn('python', ['./flaskServer.py'])
 
 // 정적 파일을 가져오기 위한 미들웨어
 app.use(express.static(path.join(__dirname, "react-project", "build")));
@@ -66,6 +71,11 @@ app.use('/page', page)
 app.use('/socket', socketRoute)
 // 결제 라우터
 app.use('/payment', paymentGoods)
+
+// python 서버 실행 확인
+python.stdout.on('data',(data)=>{
+  console.log('flask server on')
+})
 
 // 포트번호 설정
 app.set("port", process.env.PORT || 3001);

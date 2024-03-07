@@ -24,7 +24,6 @@ router.post('/enQueue', async(req,res)=>{
 router.post('/deQueue', async(req,res)=>{
     let userId = req.body.id
     let result = await socketModel.deQueue(userId)
-    console.log('머냐', result)
     if(result.selectResult){
         res.json({result : result.data})
     } 

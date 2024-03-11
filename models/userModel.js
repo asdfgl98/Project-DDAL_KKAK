@@ -74,9 +74,9 @@ const userLogin = async(id, hash)=>{
     conn.connect();
     try {
         let result = await conn.promise().query(idQuery, [id]);
-        result = result[0]       
+        result = result[0]      
         // 아무것도 조회 되지 않으면
-        if (result[0].length == 0) {
+        if (result.length == 0) {
         return {loginResult : 'IDError'}
         } else {
         if (result[0].MEMBER_ID == id && result[0].MEMBER_PW == hash) {

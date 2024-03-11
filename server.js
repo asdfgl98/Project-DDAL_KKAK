@@ -82,7 +82,7 @@ python.stdout.on('data',(data)=>{
 })
 
 // 포트번호 설정
-app.set("port", process.env.PORT || 3001);
+app.set("port", process.env.PORT || 80);
 
 app.get("/", (req, res) => {
   res.render("index");

@@ -16,6 +16,8 @@ const socialLogin = async(userData, loginType)=>{
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
             const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, loginType, userData.properties.nickname])
+                return {socialResult : true}
+                
             }
             else{
                 return {socialResult : true}
@@ -30,6 +32,7 @@ const socialLogin = async(userData, loginType)=>{
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
             const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, userData.email, loginType, userData.name])
+                return {socialResult : true}
             }
             else{
                 return {socialResult : true}
@@ -44,6 +47,7 @@ const socialLogin = async(userData, loginType)=>{
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
             const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, userData.email, userData.mobile.replace(/-/g,''), 'N', userData.name])
+                return {socialResult : true}
             }
             else{
                 return {socialResult : true}

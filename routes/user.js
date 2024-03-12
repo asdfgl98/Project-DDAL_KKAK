@@ -12,6 +12,17 @@ const crypto = require('crypto')
 const userModel = require('../models/userModel')
 const myPageModel = require('../models/myPageModel')
 
+// DB 연결을 위한 더미 SQL 문
+router.get('/dbServer', async(req,res)=>{
+  const result = await userModel.dbServer()
+  if(result.dbResult){
+    res.json(true)
+  }
+  else{
+    res.json(false)
+  }  
+})
+
 
 // 회원가입 라우터
 // 23-11-28 오후 14:15 박지훈 수정(DB 쿼리문 모듈화)

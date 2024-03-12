@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const path = require("path");
 const session = require('express-session')
+const schedule = require('node-schedule')
 // cors 에러 방지 프록시 설정
 const { createProxyMiddleware } = require('http-proxy-middleware');
 // env 사용
@@ -126,5 +127,13 @@ app.get("*", (req, res) => {
 
 server.listen(app.get("port"), () => {
   console.log("DDal_KKAK_SERVER port waiting...");
-  // console.log('http://localhost:3001')
+  const j = schedule.scheduleJob('* * * / 4 * * *', async()=>{
+      const dbServer = await axios.get('/user/dbServer')
+      if(dbServer.data){
+        console.log('DBserver 갱신 성공')
+      }
+      else{
+        console.log('DBserver 갱신 실패')
+      }
+  })
 });

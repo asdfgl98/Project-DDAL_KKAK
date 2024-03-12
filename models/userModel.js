@@ -108,6 +108,18 @@ const deleteUser =  async(userId)=>{
 
 }
 
+const dbServer = async()=>{
+  let sql = 'SELECT 1 FROM DUAL'
+  try{
+    conn.connect()
+    let result = await conn.promise().query(sql)
+    return {dbResult : true}
+  }
+  catch(err){
+    console.error('DB 서버 유지 더미 쿼리문 에러', err)
+  }
+}
 
 
-module.exports = {userNormalJoin, userIdCheck, userLogin, deleteUser}
+
+module.exports = {userNormalJoin, userIdCheck, userLogin, deleteUser, dbServer}

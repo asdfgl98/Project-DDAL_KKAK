@@ -127,7 +127,7 @@ app.get("*", (req, res) => {
 
 server.listen(app.get("port"), () => {
   console.log("DDal_KKAK_SERVER port waiting...");
-  const j = schedule.scheduleJob('* * * / 4 * * *', async()=>{
+  const j = schedule.scheduleJob('* * */4 * * *', async()=>{
       const dbServer = await axios.get('/user/dbServer')
       if(dbServer.data){
         console.log('DBserver 갱신 성공')

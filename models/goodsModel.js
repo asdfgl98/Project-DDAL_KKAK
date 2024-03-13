@@ -14,6 +14,10 @@ const goods = async () => {
     catch(err){
         console.error("굿즈 페이지 쿼리문 에러", err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /** 굿즈 디테일 정보 가져오는 함수 */
@@ -50,18 +54,34 @@ const goodProduct = async (data) => {
                 catch(err){
                     console.error('굿즈 상세페이지 select4 에러', err);
                 }
+                finally {
+                    // DB 연결 해제
+                    conn.end()
+                  }
             }
             catch(err){
                 console.error('굿즈 상세페이지 select3 에러', err);
             }
+            finally {
+                // DB 연결 해제
+                conn.end()
+              }
         }
         catch(err){
             console.error('굿즈 상세페이지 select2 에러', err);
         }
+        finally {
+            // DB 연결 해제
+            conn.end()
+          }
     }
     catch(err){
         console.error('굿즈 상세페이지 select1 에러', err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 /** 리뷰 데이터 라우터 함수 */
 const review = async (data) => {
@@ -82,6 +102,10 @@ const review = async (data) => {
     catch(err){
         console.error("리뷰 데이터 select 쿼리 에러", err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /* 리뷰 저장 함수 */
@@ -96,6 +120,10 @@ const reviewInsert = async({userId, prodId, reviewText, img, rating})=>{
     catch(err){
         console.error('리뷰 저장 에러', err)
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 module.exports = {goods, goodProduct, review, reviewInsert}

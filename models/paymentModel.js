@@ -16,6 +16,10 @@ const orderGoods = async({MEMBER_ID, ORDER_PRICE, DELIVERY_POST, DELIVERY_ADDR1,
     catch(err){
         console.error('주문내역 INSERT 쿼리문 에러', err)
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 module.exports = {orderGoods}

@@ -13,6 +13,10 @@ const createList = async()=>{
     catch(err){
         console.error('이미지 생성 대기열 SELECT 에러',err)
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 
 }
 
@@ -30,11 +34,19 @@ const enQueue = async(userId)=>{
         }
         catch(err){
             console.error('이미지 생성 대기 리스트 select 에러', err)
-        }       
+        }
+        finally {
+            // DB 연결 해제
+            conn.end()
+          }       
     }
     catch(err){
         console.error('이미지 생성 인큐 에러', err)
-    }        
+    }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }        
 }
 
 /* 이미지 생성 대기열 삭제(디큐) */
@@ -50,6 +62,10 @@ const deQueue = async(userId)=>{
     catch(err){
         console.error('이미지 생성 디큐 에러', err)
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 

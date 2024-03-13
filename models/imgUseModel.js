@@ -21,6 +21,10 @@ const myimg = async (userId) => {
     catch(err){
         console.error("내 저장 이미지 쿼리문 오류", err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /** 내 저장 이미지 공유 토글 함수*/
@@ -36,6 +40,10 @@ const imgShare = async (imgId) => {
     catch(err){
         console.error('공유 여부 변경 쿼리문 에러', err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 const deleteImg = async (sqlImgUrl, sessionId) => {
@@ -61,6 +69,10 @@ const deleteImg = async (sqlImgUrl, sessionId) => {
     catch(err){
         console.error("내 저장 이미지 삭제 쿼리문 오류", err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 module.exports = {myimg, imgShare, deleteImg}

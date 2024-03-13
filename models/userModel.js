@@ -62,7 +62,12 @@ const userIdCheck = async(id)=>{
   }
   catch(err){
     console.error('아이디 체크 쿼리문 에러',err)
-  }  
+  }
+  finally {
+    // DB 연결 해제
+    conn.end()
+  }
+  
 }
 
 /* 일반 유저 로그인 DB 함수 */
@@ -93,6 +98,10 @@ const userLogin = async(id, hash)=>{
         console.error('일반회원 로그인 쿼리문 에러', err)
         return {loginResult : "serverError"}
       }
+      finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /* 소셜, 일반 유저 회원탈퇴 쿼리문 */
@@ -105,6 +114,10 @@ const deleteUser =  async(userId)=>{
     } catch(err) {
         console.error('회원탈퇴 쿼리문 에러', err)
     }
+    finally {
+      // DB 연결 해제
+      conn.end()
+    }
 
 }
 
@@ -113,10 +126,15 @@ const dbServer = async()=>{
   try{
     conn.connect()
     let result = await conn.promise().query(sql)
+    console.log(result)
     return {dbResult : true}
   }
   catch(err){
     console.error('DB 서버 유지 더미 쿼리문 에러', err)
+  }
+  finally {
+    // DB 연결 해제
+    conn.end()
   }
 }
 

@@ -21,6 +21,10 @@ const mainImgShow = async () => {
     catch(err){
         console.error('이미지 불러오기 쿼리문 에러', err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /** 공유하는 이미지 모음 함수 */
@@ -49,6 +53,10 @@ const shareImgShow = async (data) => {
     catch(err){
         console.error('이미지 불러오기 쿼리문 에러', err)
      }
+     finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /** 이미지 좋아요 클릭, 클릭 해제 함수 */
@@ -69,6 +77,10 @@ const likeClick = async (userId, imgId) => {
             catch(err){
                 console.error('좋아요 DB 데이터 INSERT 에러', err);
             }
+            finally {
+                // DB 연결 해제
+                conn.end()
+              }
         }
         else if(data === 1){ // 좋아요 해제
             try{
@@ -78,12 +90,20 @@ const likeClick = async (userId, imgId) => {
             catch(err){
                 console.error("좋아요 DB 데이터 DELETE 에러", err);
             }
+            finally {
+                // DB 연결 해제
+                conn.end()
+              }
         }
 
     }
     catch(err){
         console.error('이미지 좋아요 클릭 select 쿼리 에러', err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 /** 좋아요 클릭 여부 확인 라우터 */
@@ -105,6 +125,10 @@ const likeCheck = async (userId, imgId) => {
     catch(err){
         console.error('좋아요 체크 유무 쿼리문 에러', err);
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
     
 }
 

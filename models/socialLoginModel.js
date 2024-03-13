@@ -58,6 +58,10 @@ const socialLogin = async(userData, loginType)=>{
         console.error(`${loginType} SELECT 에러 발생',`, error)
         return {socialResult : false}
     }
+    finally {
+        // DB 연결 해제
+        conn.end()
+      }
 }
 
 

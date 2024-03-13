@@ -7,8 +7,8 @@ const mypage = async(id)=>{
     let idQuery ="SELECT MEMBER_PW, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_POST, MEMBER_ADDR1, MEMBER_ADDR2 FROM TB_MEMBER WHERE MEMBER_ID = ?";
     // DB 연결
     try{
-      conn.connect();
-      let result = await conn.promise().query(idQuery, [id])
+      let conn = await db.init();
+      let result = await conn.query(idQuery, [id])
       result = result[0]
       let userEmail = result[0].MEMBER_EMAIL // DB에 저장된 회원 이메일
       let userPhone = result[0].MEMBER_PHONE // DB에 저장된 회원 전화번호
@@ -28,17 +28,16 @@ const mypage = async(id)=>{
     }
     finally {
       // DB 연결 해제
-      conn.end()
+      (await conn).release()
     }
 }
 
 // 회원 정보 수정
 const updateInfo = async({userID, userPw, userEmail, userPhone, postNum, addr1, addr2})=>{
   let updateQuery ="UPDATE TB_MEMBER SET MEMBER_PW = SHA2(?, 256), MEMBER_EMAIL = ?, MEMBER_PHONE = ?, MEMBER_POST = ?, MEMBER_ADDR1 = ?, MEMBER_ADDR2 = ? WHERE MEMBER_ID = ?";
-
-  conn.connect()
   try{
-    let result = await conn.promise().query(updateQuery, [userPw, userEmail, userPhone, postNum, addr1, addr2, userID])
+    let conn = await db.init();
+    let result = await conn.query(updateQuery, [userPw, userEmail, userPhone, postNum, addr1, addr2, userID])
     return {updateResult:true}
   }
   catch(err){
@@ -47,7 +46,7 @@ const updateInfo = async({userID, userPw, userEmail, userPhone, postNum, addr1, 
   }
   finally {
     // DB 연결 해제
-    conn.end()
+    (await conn).release()
   }
 }
 
@@ -60,8 +59,8 @@ const order = async (userId) => {
                       WHERE A.MEMBER_ID = ?
                    ORDER BY A.ORDER_AT`
   try{
-    conn.connect()
-    let result = await conn.promise().query(selectQuery, [userId])
+    let conn = await db.init();
+    let result = await conn.query(selectQuery, [userId])
     return {goods : result}
   }
   catch(err){
@@ -69,7 +68,7 @@ const order = async (userId) => {
   }
   finally {
     // DB 연결 해제
-    conn.end()
+    (await conn).release()
   }
 }
 

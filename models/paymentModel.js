@@ -8,9 +8,10 @@ const orderGoods = async({MEMBER_ID, ORDER_PRICE, DELIVERY_POST, DELIVERY_ADDR1,
     let insertOrderDetailSql = `INSERT INTO TB_ORDER_DETAIL (ORDER_ID, PROD_ID, ORDER_DE_CNT, ORDER_PROD_INFO, ORDER_DE_IMG, PROD_NAME, ORDER_DETAIL_PRICE) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`
     try{
-        let orderResult = await conn.promise().query(insertOrderSql, [ORDER_ID, MEMBER_ID, ORDER_PRICE, DELIVERY_POST, DELIVERY_ADDR1, DELIVERY_ADDR2, RECIPIENT])
+        let conn = await db.init();
+        let orderResult = await conn.query(insertOrderSql, [ORDER_ID, MEMBER_ID, ORDER_PRICE, DELIVERY_POST, DELIVERY_ADDR1, DELIVERY_ADDR2, RECIPIENT])
         for (const item of BUYITEM_SESSION){
-            let orderDetailResult = await conn.promise().query(insertOrderDetailSql, [ORDER_ID, item.PROD_ID, item.PROD_COUNT, `${item.PROD_SIZE}/${item.COLOR_NAME}`,item.PROD_URL, item.PROD_NAME, item.PRICE_SUM])
+            let orderDetailResult = await conn.query(insertOrderDetailSql, [ORDER_ID, item.PROD_ID, item.PROD_COUNT, `${item.PROD_SIZE}/${item.COLOR_NAME}`,item.PROD_URL, item.PROD_NAME, item.PRICE_SUM])
         }        
     }
     catch(err){
@@ -18,7 +19,7 @@ const orderGoods = async({MEMBER_ID, ORDER_PRICE, DELIVERY_POST, DELIVERY_ADDR1,
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 

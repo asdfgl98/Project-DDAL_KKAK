@@ -13,8 +13,8 @@ const myimg = async (userId) => {
        FROM TB_GEN_IMG WHERE MEMBER_ID = ? ORDER BY GENERATED_AT DESC`;
 
     try{
-        conn.connect();
-        const result = await conn.promise().query(selectQuery, [userId])
+        let conn = await db.init();
+        const result = await conn.query(selectQuery, [userId])
 
         return { imgArray: result }
     }
@@ -23,7 +23,7 @@ const myimg = async (userId) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -33,8 +33,8 @@ const imgShare = async (imgId) => {
                   SET IMG_SHARE = CASE WHEN IMG_SHARE = 'Y' THEN 'N' WHEN IMG_SHARE = 'N' THEN 'Y' ELSE IMG_SHARE END
                 WHERE IMG_ID = ?`
     try{
-        conn.connect()
-        const result = await conn.promise().query(sql, [imgId])
+        let conn = await db.init();
+        const result = await conn.query(sql, [imgId])
         return {imgArray : true}
     }
     catch(err){
@@ -42,7 +42,7 @@ const imgShare = async (imgId) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -56,10 +56,10 @@ const deleteImg = async (sqlImgUrl, sessionId) => {
                         WHERE IMG_ID = TB_GEN_IMG.IMG_ID) AS CNT
                         FROM TB_GEN_IMG WHERE MEMBER_ID = ? ORDER BY GENERATED_AT DESC`;
     try{
-        conn.connect();
-        const deleteResult = await conn.promise().query(deleteQuery)
+        let conn = await db.init();
+        const deleteResult = await conn.query(deleteQuery)
             try{
-                const result = await conn.promise().query(selectQuery, [sessionId])
+                const result = await conn.query(selectQuery, [sessionId])
                 return {imgArray : result}
             }
             catch(err){
@@ -71,7 +71,7 @@ const deleteImg = async (sqlImgUrl, sessionId) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 

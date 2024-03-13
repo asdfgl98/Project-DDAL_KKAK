@@ -7,7 +7,8 @@ let conn = db.init();
 const createList = async()=>{
     let selectSql = 'SELECT WAIT_ID AS CNT FROM TB_WAIT;'
     try{
-        const result = await conn.promise().query(selectSql)
+        let conn = await db.init();
+        const result = await conn.query(selectSql)
         return result[0]
     }
     catch(err){
@@ -15,7 +16,7 @@ const createList = async()=>{
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 
 }
@@ -25,11 +26,11 @@ const createList = async()=>{
 const enQueue = async(userId)=>{
     let insertSql = `INSERT INTO TB_WAIT (MEMBER_ID, WAIT_AT) VALUES (?, DATE_ADD(NOW(), INTERVAL 9 HOUR))`
     let selectSql = `SELECT MEMBER_ID FROM TB_WAIT ORDER BY WAIT_AT`
-    conn.connect()
     try{
-        let result = await conn.promise().query(insertSql, [userId])
+        let conn = await db.init();
+        let result = await conn.query(insertSql, [userId])
         try{
-            let selectResult = await conn.promise().query(selectSql)          
+            let selectResult = await conn.query(selectSql)          
             return {selectResult : true, data : selectResult[0]}
         }
         catch(err){
@@ -37,7 +38,7 @@ const enQueue = async(userId)=>{
         }
         finally {
             // DB 연결 해제
-            conn.end()
+            (await conn).release()
           }       
     }
     catch(err){
@@ -45,7 +46,7 @@ const enQueue = async(userId)=>{
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }        
 }
 
@@ -54,9 +55,9 @@ const deQueue = async(userId)=>{
     let sql = `DELETE FROM TB_WAIT WHERE MEMBER_ID = ?`
     let selectSql = `SELECT MEMBER_ID FROM TB_WAIT ORDER BY WAIT_AT`
     try{
-        conn.connect()
-        let result = await conn.promise().query(sql, [userId])
-        let selectResult = await conn.promise().query(selectSql)
+        let conn = await db.init();
+        let result = await conn.query(sql, [userId])
+        let selectResult = await conn.query(selectSql)
         return {selectResult : true, data : selectResult[0]}
     }
     catch(err){
@@ -64,7 +65,7 @@ const deQueue = async(userId)=>{
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 

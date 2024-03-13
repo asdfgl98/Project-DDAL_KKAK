@@ -5,17 +5,17 @@ let conn = db.init();
 
 /* 소셜 로그인 함수 */
 const socialLogin = async(userData, loginType)=>{
-    conn.connect()
     try{
+        let conn = await db.init();
         // 로그인 타입이 Kakao 라면
         if(loginType === 'K'){
             let selectSQL = `SELECT COUNT(MEMBER_ID) AS CNT FROM TB_MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = SHA('?')`
             let joinSQL = `INSERT INTO TB_MEMBER (MEMBER_ID, MEMBER_PW, MEMBER_LOGIN_TYPE, JOINED_AT, MEMBER_NAME) VALUES ('?' ,SHA('?'),?, DATE_ADD(NOW(), INTERVAL 9 HOUR) ,?);`
             // 카카오 계정으로 회원가입 여부 쿼리문
-            const selectResult = await conn.promise().query(selectSQL, [userData.id, userData.id])
+            const selectResult = await conn.query(selectSQL, [userData.id, userData.id])
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
-            const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, loginType, userData.properties.nickname])
+            const joinResult = await conn.query(joinSQL, [userData.id, userData.id, loginType, userData.properties.nickname])
                 return {socialResult : true}
                 
             }
@@ -28,10 +28,10 @@ const socialLogin = async(userData, loginType)=>{
             let selectSQL = `SELECT COUNT(MEMBER_ID) AS CNT FROM TB_MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = SHA(?)`
             let joinSQL = `INSERT INTO TB_MEMBER (MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_LOGIN_TYPE, JOINED_AT, MEMBER_NAME) VALUES (?, SHA(?), ?,?, DATE_ADD(NOW(), INTERVAL 9 HOUR), ?);`
             // 구글 계정으로 회원가입 여부 쿼리문
-            const selectResult = await conn.promise().query(selectSQL, [userData.id, userData.id])
+            const selectResult = await conn.query(selectSQL, [userData.id, userData.id])
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
-            const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, userData.email, loginType, userData.name])
+            const joinResult = await conn.query(joinSQL, [userData.id, userData.id, userData.email, loginType, userData.name])
                 return {socialResult : true}
             }
             else{
@@ -43,10 +43,10 @@ const socialLogin = async(userData, loginType)=>{
             let selectSQL = `SELECT COUNT(MEMBER_ID) AS CNT FROM TB_MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = SHA(?)`
             let joinSQL = `INSERT INTO TB_MEMBER (MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_LOGIN_TYPE, JOINED_AT, MEMBER_NAME) VALUES (?, SHA(?),?,?,?,DATE_ADD(NOW(), INTERVAL 9 HOUR),?);`
             // 네이버 계정으로 회원가입 여부 쿼리문
-            const selectResult = await conn.promise().query(selectSQL, [userData.id, userData.id])
+            const selectResult = await conn.query(selectSQL, [userData.id, userData.id])
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
-            const joinResult = await conn.promise().query(joinSQL, [userData.id, userData.id, userData.email, userData.mobile.replace(/-/g,''), 'N', userData.name])
+            const joinResult = await conn.query(joinSQL, [userData.id, userData.id, userData.email, userData.mobile.replace(/-/g,''), 'N', userData.name])
                 return {socialResult : true}
             }
             else{
@@ -60,7 +60,7 @@ const socialLogin = async(userData, loginType)=>{
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 

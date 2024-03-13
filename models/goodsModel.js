@@ -7,8 +7,8 @@ let conn = db.init();
 const goods = async () => {
     let selectQuery = "SELECT * FROM TB_PRODUCT"
     try{
-        conn.connect()
-        const reuslt = await conn.promise().query(selectQuery)
+        let conn = await db.init();
+        const reuslt = await conn.query(selectQuery)
         return {result : reuslt, isLoading : true}
     }
     catch(err){
@@ -16,7 +16,7 @@ const goods = async () => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -32,17 +32,17 @@ const goodProduct = async (data) => {
     let prdSize = '' // 굿즈 사이즈
 
     try{
-        conn.connect()
-        const select1Result = await conn.promise().query(selectQuery1, [data])
+        let conn = await db.init();
+        const select1Result = await conn.query(selectQuery1, [data])
         prdInfo = select1Result[0]
         try{
-            const select2Result = await conn.promise().query(selectQuery2, [data])
+            const select2Result = await conn.query(selectQuery2, [data])
             prdColor = select2Result[0]
             try{
-                const select3Result = await conn.promise().query(selectQuery3, [data])
+                const select3Result = await conn.query(selectQuery3, [data])
                 prdImg = select3Result[0]
                 try{
-                    const select4Result = await conn.promise().query(selectQuery4, [data])
+                    const select4Result = await conn.query(selectQuery4, [data])
                     prdSize = select4Result[0]
                     return {                                      
                         prdInfo:prdInfo,
@@ -56,7 +56,7 @@ const goodProduct = async (data) => {
                 }
                 finally {
                     // DB 연결 해제
-                    conn.end()
+                    (await conn).release()
                   }
             }
             catch(err){
@@ -64,7 +64,7 @@ const goodProduct = async (data) => {
             }
             finally {
                 // DB 연결 해제
-                conn.end()
+                (await conn).release()
               }
         }
         catch(err){
@@ -72,7 +72,7 @@ const goodProduct = async (data) => {
         }
         finally {
             // DB 연결 해제
-            conn.end()
+            (await conn).release()
           }
     }
     catch(err){
@@ -80,7 +80,7 @@ const goodProduct = async (data) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 /** 리뷰 데이터 라우터 함수 */
@@ -95,8 +95,8 @@ const review = async (data) => {
                        FROM TB_REVIEW A
                       WHERE PROD_ID = ?`
     try{
-        conn.connect()
-        let result = await conn.promise().query(selectSql, [data])
+        let conn = await db.init();
+        let result = await conn.query(selectSql, [data])
         return {reviewArray : result}
     }
     catch(err){
@@ -104,7 +104,7 @@ const review = async (data) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -112,9 +112,9 @@ const review = async (data) => {
 const reviewInsert = async({userId, prodId, reviewText, img, rating})=>{
     let sql = `INSERT INTO TB_REVIEW (MEMBER_ID, PROD_ID, REVIEW_CONTENT, REVIEW_IMG, REVIEW_RATINGS, REVIEWED_AT) 
     VALUES (?,?,?,?,?, DATE_ADD(NOW(), INTERVAL 9 HOUR));`
-    conn.connect()
+    let conn = await db.init();
     try{
-        const result = await conn.promise().query(sql, [userId, prodId, reviewText, img, rating])
+        const result = await conn.query(sql, [userId, prodId, reviewText, img, rating])
         return {resultInsert : true}
     }
     catch(err){
@@ -122,7 +122,7 @@ const reviewInsert = async({userId, prodId, reviewText, img, rating})=>{
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 

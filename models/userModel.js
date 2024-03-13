@@ -2,6 +2,7 @@
 const db = require("../config/database");
 let conn = db.init();
 
+
 /* 일반 회원가입 */
 const userNormalJoin = async (userData)=>{
   let data = userData
@@ -23,8 +24,8 @@ const userNormalJoin = async (userData)=>{
       // 비밀번호 확인 조건문
       if (userPw == checkPw) {
         // DB 연결
-        conn.connect();
-        const result = await conn.promise().query(
+        let conn = await db.init();
+        const result = await conn.query(
           joinQuery,
           [userId, userPw, userName, useremail, phone, postNumber, doro, detailAddress]);
         if(result){
@@ -43,16 +44,16 @@ const userNormalJoin = async (userData)=>{
   }
   finally {
     // DB 연결 해제
-    conn.end()
+    (await conn).release()
   }
 }
 
 /* 일반 회원가입 아이디 중복체크 */
 const userIdCheck = async(id)=>{
   let query = "SELECT MEMBER_ID FROM TB_MEMBER WHERE MEMBER_ID = ?";
-  conn.connect();
   try{
-    const result = await conn.promise().query(query, [id])
+    let conn = await db.init();
+    const result = await conn.query(query, [id])
     if (result[0].length == 0) {
         // 아이디 조회결과 0개 사용가능
         return {loginCheck : true}
@@ -65,7 +66,7 @@ const userIdCheck = async(id)=>{
   }
   finally {
     // DB 연결 해제
-    conn.end()
+    (await conn).release()
   }
   
 }
@@ -76,9 +77,9 @@ const userLogin = async(id, hash)=>{
   let idQuery =
   "SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_LOGIN_TYPE FROM TB_MEMBER WHERE MEMBER_ID = ?";
     // DB 연결
-    conn.connect();
     try {
-        let result = await conn.promise().query(idQuery, [id]);
+        let conn = await db.init();
+        let result = await conn.query(idQuery, [id]);
         result = result[0]      
         // 아무것도 조회 되지 않으면
         if (result.length == 0) {
@@ -100,7 +101,7 @@ const userLogin = async(id, hash)=>{
       }
       finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -108,15 +109,15 @@ const userLogin = async(id, hash)=>{
 const deleteUser =  async(userId)=>{
     let deleteUserSQL = `DELETE FROM TB_MEMBER WHERE MEMBER_ID = ?`
     try{
-        conn.connect()
-        let result = await conn.promise().query(deleteUserSQL, [String(userId)])
+      let conn = await db.init();
+        let result = await conn.query(deleteUserSQL, [String(userId)])
         return {deleteResult : true}
     } catch(err) {
         console.error('회원탈퇴 쿼리문 에러', err)
     }
     finally {
       // DB 연결 해제
-      conn.end()
+      (await conn).release()
     }
 
 }
@@ -124,8 +125,8 @@ const deleteUser =  async(userId)=>{
 const dbServer = async()=>{
   let sql = 'SELECT 1 FROM DUAL'
   try{
-    conn.connect()
-    let result = await conn.promise().query(sql)
+    let conn = await db.init();
+    let result = await conn.query(sql)
     console.log(result)
     return {dbResult : true}
   }
@@ -134,7 +135,7 @@ const dbServer = async()=>{
   }
   finally {
     // DB 연결 해제
-    conn.end()
+    (await conn).release()
   }
 }
 

@@ -14,8 +14,8 @@ const mainImgShow = async () => {
                 WHERE IMG_SHARE = "Y"
              ORDER BY CNT DESC LIMIT 10`
     try{
-        conn.connect()
-        const result = await conn.promise().query(sql)
+        let conn = await db.init();
+        const result = await conn.query(sql)
         return {imgArray : result}
     }
     catch(err){
@@ -23,7 +23,7 @@ const mainImgShow = async () => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -46,8 +46,8 @@ const shareImgShow = async (data) => {
       WHERE IMG_ID= A.IMG_ID) AS CNT
      FROM TB_GEN_IMG A INNER JOIN TB_MEMBER B ON(A.MEMBER_ID = B.MEMBER_ID) WHERE IMG_SHARE = "Y" ORDER BY ${sort}`
     try{
-        conn.connect()
-        const result = await conn.promise().query(sql)
+        let conn = await db.init();
+        const result = await conn.query(sql)
         return {imgArray : result}
      }
     catch(err){
@@ -55,7 +55,7 @@ const shareImgShow = async (data) => {
      }
      finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -66,12 +66,12 @@ const likeClick = async (userId, imgId) => {
     let sqlDelete = 'DELETE FROM TB_LIKE WHERE MEMBER_ID = ? AND IMG_ID = ?'
 
     try{
-
-        const result = await conn.promise().query(sqlSelect, [userId, imgId])
+        let conn = await db.init();
+        const result = await conn.query(sqlSelect, [userId, imgId])
         let data = result[0][0].CNT
         if(data === 0){ // 좋아요 등록
             try{
-                const insertResult = await conn.promise().query(sqlInsert, [userId, imgId])
+                const insertResult = await conn.query(sqlInsert, [userId, imgId])
                 return {likeCheck:true}
             }
             catch(err){
@@ -79,12 +79,12 @@ const likeClick = async (userId, imgId) => {
             }
             finally {
                 // DB 연결 해제
-                conn.end()
+                (await conn).release()
               }
         }
         else if(data === 1){ // 좋아요 해제
             try{
-                const deleteResult = await conn.promise().query(sqlDelete, [userId, imgId])
+                const deleteResult = await conn.query(sqlDelete, [userId, imgId])
                 return {likeCheck:true}
             }
             catch(err){
@@ -92,7 +92,7 @@ const likeClick = async (userId, imgId) => {
             }
             finally {
                 // DB 연결 해제
-                conn.end()
+                (await conn).release()
               }
         }
 
@@ -102,7 +102,7 @@ const likeClick = async (userId, imgId) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
 }
 
@@ -112,8 +112,8 @@ const likeCheck = async (userId, imgId) => {
                        FROM TB_LIKE
                       WHERE MEMBER_ID =? AND IMG_ID = ?`
     try{
-        conn.connect()
-        const result = await conn.promise().query(sqlSelect, [userId, imgId])
+        let conn = await db.init();
+        const result = await conn.query(sqlSelect, [userId, imgId])
         let data = result[0][0].CNT
         if(data === 0){ // 좋아요 체크 안되어있으면
             return {likeCheck : false}
@@ -127,7 +127,7 @@ const likeCheck = async (userId, imgId) => {
     }
     finally {
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
       }
     
 }

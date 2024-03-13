@@ -12,8 +12,8 @@ const imgSave = async (userId, positive, negative, img_info, imgName) => {
 
     try{
         // DB 연결
-        conn.connect();
-        const result = await conn.promise().query(
+        let conn = await db.init();
+        const result = await conn.query(
           insertQuery,
           [userId, positive, negative, img_info, imgName]);
         if (result) {
@@ -26,7 +26,7 @@ const imgSave = async (userId, positive, negative, img_info, imgName) => {
     }
     finally{
         // DB 연결 해제
-        conn.end()
+        (await conn).release()
     }
 }
 

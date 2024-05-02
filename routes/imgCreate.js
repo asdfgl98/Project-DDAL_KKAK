@@ -17,7 +17,7 @@ const client = new S3Client({
   secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY
 })
 
-let flaskServer = 'http://ec2-3-38-253-131.ap-northeast-2.compute.amazonaws.com:5000'
+let flaskServer = 'http://localhost:5000'
 
 router.get('/checkServer', (req,res)=>{
   res.json({server : flaskServer})

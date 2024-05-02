@@ -15,7 +15,7 @@ const socialLogin = async(userData, loginType)=>{
             const selectResult = await conn.query(selectSQL, [userData.id, userData.id])
             // 회원가입이 되어있지 않다면
             if(selectResult[0][0].CNT == 0){
-            const joinResult = await conn.query(joinSQL, [userData.id, userData.id, loginType, userData.properties.nickname])
+            const joinResult = await conn.query(joinSQL, [String(userData.id), userData.id, loginType, userData.properties.nickname])
                 return {socialResult : true}
                 
             }

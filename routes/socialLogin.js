@@ -48,7 +48,7 @@ router.get("/kakaoLogin",  async(req, res) => {
           // 로그인 타입
           req.session.loginType = loginType
           // 사용자 아이디
-          req.session.userId = userData.id
+          req.session.userId = String(userData.id)
           res.redirect('/')
         }
         else{

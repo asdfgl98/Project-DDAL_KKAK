@@ -1,5 +1,5 @@
 # 광주인공지능사관학교4기 JS 특화과정 실전역량프로젝트
-# TeamProject-DDAL KKAK
+# TeamProject-DDAL_KKAK
 생성형AI 활용 사용자 맞춤 이미지 및 굿즈 제작 웹서비스
 
 <br/>
